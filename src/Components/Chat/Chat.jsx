@@ -9,85 +9,81 @@ const ChatBox = () => {
 
   const getToken = () => localStorage.getItem('tkn');
 
+  // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // جلب تاريخ الشات القديم لو في sessionId
   useEffect(() => {
     const sessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
-
     if (sessionId && token) {
       axios
         .get(`https://campus-finder.runasp.net/api/Chatbot/history/${sessionId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => {
+        .then(res => {
           if (res.data.statusCode === 200) {
-            const history = res.data.data.map((msg) => ({
+            const history = res.data.data.map(msg => ({
               text: msg.content,
               sender: msg.role.toLowerCase(),
               timestamp: msg.timestamp,
             }));
             setMessages(history);
-          } else {
-            console.error('No chat history found for this session.');
           }
         })
-        .catch((err) => console.error('Error fetching chat history:', err));
+        .catch(err => console.error('Error fetching history:', err));
     }
   }, []);
 
   const handleSend = () => {
-    if (message.trim() === '') return;
+    if (!message.trim()) return;
 
-    const userMsg = {
-      text: message,
-      sender: 'user',
-      timestamp: new Date().toISOString(),
-    };
-
-    setMessages((prev) => [...prev, userMsg]);
+    // عرض الرسالة في الواجهة فوراً
+    setMessages(prev => [
+      ...prev,
+      { text: message, sender: 'user', timestamp: new Date().toISOString() },
+    ]);
+    const outgoing = message;
     setMessage('');
 
-    let sessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
+    let sessionId = localStorage.getItem('chat_session_id');
 
-    if (token) {
-      axios
-        .post(
-          'https://campus-finder.runasp.net/api/Chatbot/ask',
-          {
-            message,
-            sessionId, // حتى لو فاضي، السيرفر هيرجع session جديد
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((res) => {
-          if (res.data.statusCode === 200 && res.data.data.answer) {
-            setMessages((prev) => [
-              ...prev,
-              {
-                text: res.data.data.answer,
-                sender: 'bot',
-                timestamp: new Date().toISOString(),
-              },
-            ]);
-            // خزّن sessionId لو مش محفوظ
-            if (res.data.data.sessionId) {
-              localStorage.setItem('chat_session_id', res.data.data.sessionId);
-            }
-          }
-        })
-        .catch((err) => console.error('Error sending message:', err));
+    if (!token) {
+      console.error('No token found in localStorage');
+      return;
     }
+
+    // جهّز جسم الطلب؛ لو sessionId موجود خليه، وإلا أبصله
+    const body = { message: outgoing };
+    if (sessionId) body.sessionId = sessionId;
+
+    axios
+      .post('https://campus-finder.runasp.net/api/Chatbot/ask', body, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => {
+        const { statusCode, data } = res.data;
+        if (statusCode === 200) {
+          // أضف جواب البوت
+          setMessages(prev => [
+            ...prev,
+            { text: data.answer, sender: 'bot', timestamp: new Date().toISOString() },
+          ]);
+          // خزّن sessionId لو رجع مع الرد
+          if (data.sessionId) {
+            localStorage.setItem('chat_session_id', data.sessionId);
+          }
+        } else {
+          console.error('API error:', res.data);
+        }
+      })
+      .catch(err => console.error('Error sending message:', err));
   };
 
   return (
@@ -96,8 +92,8 @@ const ChatBox = () => {
         <h2 className="chatbox-title">How Can I Help You?</h2>
 
         <div className="chatbox-messages">
-          {messages.map((msg, index) => (
-            <div key={index} className={`chat-msg ${msg.sender}`}>
+          {messages.map((msg, i) => (
+            <div key={i} className={`chat-msg ${msg.sender}`}>
               {msg.text}
             </div>
           ))}
@@ -110,12 +106,12 @@ const ChatBox = () => {
             placeholder="Write Your Message.."
             value={message}
             rows={1}
-            onChange={(e) => {
+            onChange={e => {
               setMessage(e.target.value);
               e.target.style.height = 'auto';
               e.target.style.height = e.target.scrollHeight + 'px';
             }}
-            onKeyDown={(e) => {
+            onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 handleSend();
