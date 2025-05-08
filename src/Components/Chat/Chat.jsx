@@ -9,16 +9,16 @@ const ChatBox = () => {
 
   const getToken = () => localStorage.getItem('tkn');
 
-  // Scroll to bottom on new message
+  // Scroll to bottom whenever messages update
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // جلب تاريخ الشات القديم لو في sessionId
+  // On mount: if we already have a sessionId, load history
   useEffect(() => {
-    const sessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
-    if (sessionId && token) {
+    const sessionId = localStorage.getItem('chat_session_id');
+    if (token && sessionId) {
       axios
         .get(`https://campus-finder.runasp.net/api/Chatbot/history/${sessionId}`, {
           headers: { Authorization: `Bearer ${token}` },
@@ -40,7 +40,7 @@ const ChatBox = () => {
   const handleSend = () => {
     if (!message.trim()) return;
 
-    // عرض الرسالة في الواجهة فوراً
+    // Show user's message immediately
     setMessages(prev => [
       ...prev,
       { text: message, sender: 'user', timestamp: new Date().toISOString() },
@@ -49,16 +49,18 @@ const ChatBox = () => {
     setMessage('');
 
     const token = getToken();
-    let sessionId = localStorage.getItem('chat_session_id');
+    const sessionId = localStorage.getItem('chat_session_id');
 
     if (!token) {
-      console.error('No token found in localStorage');
+      console.error('No token in localStorage');
       return;
     }
 
-    // جهّز جسم الطلب؛ لو sessionId موجود خليه، وإلا أبصله
+    // Build request body: include sessionId only if exists
     const body = { message: outgoing };
-    if (sessionId) body.sessionId = sessionId;
+    if (sessionId) {
+      body.sessionId = sessionId;
+    }
 
     axios
       .post('https://campus-finder.runasp.net/api/Chatbot/ask', body, {
@@ -68,19 +70,18 @@ const ChatBox = () => {
         },
       })
       .then(res => {
-        const { statusCode, data } = res.data;
-        if (statusCode === 200) {
-          // أضف جواب البوت
+        if (res.data.statusCode === 200 && res.data.data.answer) {
+          // Show bot's reply
           setMessages(prev => [
             ...prev,
-            { text: data.answer, sender: 'bot', timestamp: new Date().toISOString() },
+            { text: res.data.data.answer, sender: 'bot', timestamp: new Date().toISOString() },
           ]);
-          // خزّن sessionId لو رجع مع الرد
-          if (data.sessionId) {
-            localStorage.setItem('chat_session_id', data.sessionId);
+          // Save sessionId if returned
+          if (res.data.data.sessionId) {
+            localStorage.setItem('chat_session_id', res.data.data.sessionId);
           }
         } else {
-          console.error('API error:', res.data);
+          console.error('API returned error:', res.data);
         }
       })
       .catch(err => console.error('Error sending message:', err));
@@ -109,7 +110,7 @@ const ChatBox = () => {
             onChange={e => {
               setMessage(e.target.value);
               e.target.style.height = 'auto';
-              e.target.style.height = e.target.scrollHeight + 'px';
+              e.target.style.height = `${e.target.scrollHeight}px`;
             }}
             onKeyDown={e => {
               if (e.key === 'Enter' && !e.shiftKey) {
@@ -118,9 +119,7 @@ const ChatBox = () => {
               }
             }}
           />
-          <button className="chatbox-send-btn" onClick={handleSend}>
-            ➤
-          </button>
+          <button className="chatbox-send-btn" onClick={handleSend}>➤</button>
         </div>
       </div>
     </div>
