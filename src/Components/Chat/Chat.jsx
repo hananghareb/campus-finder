@@ -9,7 +9,6 @@ const ChatBox = () => {
 
   const getToken = () => localStorage.getItem('tkn');
 
-  // Scroll to bottom on new message
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -34,10 +33,10 @@ const ChatBox = () => {
             }));
             setMessages(history);
           } else {
-            console.error('Error fetching chat history:', res.data);
+            console.error('No chat history found for this session.');
           }
         })
-        .catch((err) => console.error('Error:', err));
+        .catch((err) => console.error('Error fetching chat history:', err));
     }
   }, []);
 
@@ -53,16 +52,16 @@ const ChatBox = () => {
     setMessages((prev) => [...prev, userMsg]);
     setMessage('');
 
-    const sessionId = localStorage.getItem('chat_session_id');
+    let sessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
 
-    if (sessionId && token) {
+    if (token) {
       axios
         .post(
-          `https://campus-finder.runasp.net/api/Chatbot/ask`,
+          'https://campus-finder.runasp.net/api/Chatbot/ask',
           {
             message,
-            sessionId,
+            sessionId, // حتى لو فاضي، السيرفر هيرجع session جديد
           },
           {
             headers: {
@@ -81,6 +80,10 @@ const ChatBox = () => {
                 timestamp: new Date().toISOString(),
               },
             ]);
+            // خزّن sessionId لو مش محفوظ
+            if (res.data.data.sessionId) {
+              localStorage.setItem('chat_session_id', res.data.data.sessionId);
+            }
           }
         })
         .catch((err) => console.error('Error sending message:', err));
