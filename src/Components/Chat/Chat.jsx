@@ -11,6 +11,7 @@ const ChatBox = () => {
 
   // Scroll to bottom on new message
   useEffect(() => {
+    console.log('Messages changed, scrolling to bottom');
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
@@ -18,8 +19,9 @@ const ChatBox = () => {
     let sessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
 
+    console.log('Fetching chat history');
     if (sessionId && token) {
-      // جلب تاريخ الشات القديم
+      console.log(`Session ID found: ${sessionId}`);
       axios
         .get(`https://campus-finder.runasp.net/api/Chatbot/history/${sessionId}`, {
           headers: {
@@ -27,6 +29,7 @@ const ChatBox = () => {
           },
         })
         .then((res) => {
+          console.log('Chat history response:', res.data);
           if (res.data.statusCode === 200) {
             const history = res.data.data.map((msg) => ({
               text: msg.content,
@@ -40,7 +43,6 @@ const ChatBox = () => {
         })
         .catch((err) => console.error('Error fetching chat history:', err));
     } else {
-      // لو مفيش sessionId نبدأ جلسة جديدة
       console.log('No sessionId, starting new session...');
     }
   }, []);
@@ -54,6 +56,7 @@ const ChatBox = () => {
       timestamp: new Date().toISOString(),
     };
 
+    console.log('Sending message:', message);
     setMessages((prev) => [...prev, userMsg]);
     setMessage('');
 
@@ -61,7 +64,7 @@ const ChatBox = () => {
     const token = getToken();
 
     if (!sessionId && token) {
-      // أول رسالة بدون sessionId
+      console.log('Session ID not found, starting new session...');
       axios
         .post(
           'https://campus-finder.runasp.net/api/Chatbot/start',
@@ -73,6 +76,7 @@ const ChatBox = () => {
           }
         )
         .then((res) => {
+          console.log('Start session response:', res.data);
           if (res.data.statusCode === 200 && res.data.data.sessionId) {
             sessionId = res.data.data.sessionId;
             localStorage.setItem('chat_session_id', sessionId);
@@ -81,6 +85,7 @@ const ChatBox = () => {
         })
         .catch((err) => console.error('Failed to start chat session:', err));
     } else {
+      console.log(`Session ID found: ${sessionId}, sending message...`);
       sendMessage(sessionId, message);
     }
   };
@@ -88,6 +93,7 @@ const ChatBox = () => {
   const sendMessage = (sessionId, message) => {
     const token = getToken();
     if (sessionId && token) {
+      console.log(`Sending message to bot: ${message}`);
       axios
         .post(
           'https://campus-finder.runasp.net/api/Chatbot/ask',
@@ -103,6 +109,7 @@ const ChatBox = () => {
           }
         )
         .then((res) => {
+          console.log('Bot response:', res.data);
           if (res.data.statusCode === 200 && res.data.data.answer) {
             setMessages((prev) => [
               ...prev,
@@ -119,6 +126,8 @@ const ChatBox = () => {
           }
         })
         .catch((err) => console.error('Error sending message:', err));
+    } else {
+      console.log('No sessionId or token found, unable to send message');
     }
   };
 
