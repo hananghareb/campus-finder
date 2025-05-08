@@ -1,8 +1,14 @@
-body {
-  margin: 0;
- 
-}
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
+
+body ,html {
+  margin: 0;
+padding: 0; 
+}
+ :root{
+  --maincolor:#474DA0;
+ }
 code {
   /* font-family: Montserrat; */
 }
@@ -20,4 +26,8 @@ code {
 button ,.btn{
   box-shadow : none !important;
   outline : none !important;
+}
+
+a{
+  text-decoration: none;
 }

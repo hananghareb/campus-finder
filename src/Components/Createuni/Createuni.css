@@ -1,0 +1,11 @@
+.form-dash {
+    height: 45px;
+    width: 120%;
+    font-size: 16px;
+}
+.center-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

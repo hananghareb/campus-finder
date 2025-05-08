@@ -1,0 +1,58 @@
+.title , .subtitle{
+    color: #474DA0;
+    font-family: Montagu Slab;
+    font-weight: 700;
+    font-size: 45px;
+}
+
+.send-btn{
+    color: white;
+    border: 1px solid #474DA0 ;
+    background-color: #474DA0;
+    border-radius: 30px;
+    padding: 10px 40px;
+}
+
+.call{
+    background-color: #D0D5DD;
+}
+  .available{
+margin-top: 18px;
+margin-left: 10px;
+  }
+
+  .phone{
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+
+  .contact-call::after {
+    color: #000000;
+    margin-top: 25px;
+    content: "";
+    display: block;
+    width: 95%;
+    height: 1px;
+    background-color: gray;
+    margin-bottom: 10px;
+  }
+ .support{
+    margin-left: 10px;
+ } 
+  .send-btn:hover {
+    color: white;
+    border: 1px solid #474DA0 ;
+    background-color: #474DA0;
+    border-radius: 30px;
+    padding: 10px 40px;
+  }
+
+  
+  .subtitle::after {
+    content: '';
+    display: block;
+    width: 420px;
+    height: 4px;
+    background-color: #ccc;
+    margin: 10px auto 0 auto;
+  }

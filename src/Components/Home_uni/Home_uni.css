@@ -1,0 +1,80 @@
+.btn-view{
+    padding:8px 30px !important;
+    text-align: center;
+    color: #474DA0 !important ;
+    background-color: transparent;
+    border: 2px solid #474DA0  !important ;
+    border-radius: 10px !important;
+    font-size: large;
+}
+
+.uni-api {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    
+  }
+  .unicard img {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  
+  .unicard {
+    background-color: rgba(255, 255, 255, 0.05) !important; /* شبه شفاف */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s ease;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  
+  .unicard:hover {
+    transform: scale(1.05) !important;
+
+  }
+  .uni-img {
+    width: 100% !important;
+    height: 700px !important;
+    object-fit: cover !important;
+    display: block;
+    border: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0;
+  }
+  
+  .uni-info {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.05); /* نفس الشفافية */
+    backdrop-filter: blur(2px); /* تأثير زجاجي خفيف */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .uni-name {
+    font-size: 20px !important;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  
+  
+  .uni-location {
+    font-size: 16px !important;
+    color: #555;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .btn-view {
+    padding: 10px 25px;
+    border: 1px solid #4a3f97;
+    background-color: transparent;
+    color: #4a3f97;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: 0.3s;
+  }

@@ -1,0 +1,98 @@
+.splash-screen {
+  font-family: "Inknut Antiqua", serif;
+  font-weight: 700;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../Images/splash.jpg') !important;
+  background-size: cover;
+  background-position: 55% 55%;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-align: center;
+}
+
+/* Navbar Container */
+.nav-contain {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Navbar Style */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+/* Logo */
+.logo img {
+  width: 100px !important;
+}
+
+/* Buttons Container */
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+/* Login Button */
+.login {
+  padding: 8px 33px;
+  border: 1px solid var(--maincolor);
+  color: #1E1E1E;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Sign Up Button */
+.signup {
+  padding: 8px 33px;
+  background-color: #4C51BF;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Text Box in Splash */
+.text-box {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.text-box h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.text-box .highlight {
+  color: var(--maincolor); /* أو حددي اللون مباشرة هنا */
+}
+
+.text-box p {
+  margin-top: 1rem;
+  font-size: 28px;
+  font-weight: 600;
+  color: white !important;
+}
+
+.text-box .uni {
+  color: white;
+} 

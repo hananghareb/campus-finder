@@ -1,0 +1,65 @@
+.section2 h3{
+    font-size: 40px;
+    font-weight: 700px;
+  font-family: "Inknut Antiqua", serif;
+}
+.section2 p{
+    margin-top: 23px;
+    font-size: 28px;
+    font-weight: 100px !important;
+    font-family: "Montagu Slab", serif;
+
+}
+
+
+.uni-api {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.unicard {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.unicard:hover {
+  transform: translateY(-5px);
+}
+
+.uni-img {
+  width: 100%;
+  height:250px !important;
+  object-fit: contain !important;
+  padding: 10px !important;
+  border-top-left-radius: 12px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 12px;
+}
+
+.uni-info {
+  padding: 15px;
+}
+
+.uni-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+
+.uni-location {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.maincolor {
+  color: #4a3f97;
+}

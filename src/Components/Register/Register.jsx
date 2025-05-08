@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {useFormik} from 'formik'
 import './Register.css'
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 export default function Register() {
@@ -40,21 +40,22 @@ const [isloading, setisloading] = useState(false)
     
     console.log(data);
     
-      if(data.codeverification ){
+      if(data.statusCode ==200 ){
 
-        setsuccessmsg('Account created successfully. Please verify your email.');
+              setsuccessmsg('Account created successfully. Please check your email to verify your account.');
+
 
 
         setTimeout(function(){
           navigate('/login')
-        },1000)
+        },3000)
 
       }
     }
 
     catch (err) {
       if (err.response) {
-        seterrmsg(err.response.data.errors);
+        seterrmsg(err.response.data.message);
       } else {
         seterrmsg("Network error. Please try again later.");
       }
@@ -86,7 +87,7 @@ const [isloading, setisloading] = useState(false)
     }
 
     if(values.email.includes('@')=== false || values.email.includes('.')=== false   ){
-      errors.email = 'email invaild'
+      errors.email = 'emai'
     }
 
 if(values.password.length <6 || values.password.length > 12){
@@ -103,22 +104,35 @@ if(values.password.length <6 || values.password.length > 12){
 
  return <>
 
- 
+ <div className="nav-contain">
+  <div className="nav container">
+  <div className="logo">
+    <img src={require('../../Images/logo.png')} alt="logo" />
+  </div>
+  <div className="buttons mt-5 ">
+    <Link to={'/login'}>
+    <button className='login '>Login</button>
+    </Link>
+    <Link to={'/register'}>
+    <button className='signup'>Sign Up</button>
+    </Link>
+  </div>
+</div>
+<div className="nav-line"></div>
+  </div>
  <div className="container d-flex justify-content-center align-items-center vh-100">
      <div className="row">
          <div className="col-md-6">
              <div className="pic  pe-4 border-dark">
-                 <img className='w-100 img-fluid' src={require('../../Images/Frame 965 (1).png')} alt="Register" />
- 
+                 <img className='w-100 img-fluid mt-5' src={require('../../Images/Frame 965 (1).png')} alt="Register" />
              </div>
- 
          </div>
          <div className="col-md-6 p-5">
              <div className="content">
-
  
-             {errmsg ? <div className="alert alert-danger">{errmsg}</div> :""}
+            {errmsg ? <div className="alert alert-danger">{errmsg}</div> :""}
              {successmsg ? <div className="alert alert-success">{successmsg}</div> :""}
+
              <form onSubmit={formikobj.handleSubmit}>
  
  
@@ -147,12 +161,12 @@ if(values.password.length <6 || values.password.length > 12){
  
  
  
- <button disabled ={ formikobj.isValid === false || formikobj.dirty === false}  type='submit'  className=' mt-5 btn  w-100 main-bg-color text-white rounded-4 ' >
+ <button disabled ={ formikobj.isValid === false || formikobj.dirty === false}  type='submit'  className=' mt-3 btn  w-100 main-bg-color text-white rounded-4 ' >
  
  Sign Up
  </button>
  
- <p  className=' text-center mt-3 '> Already have an account? <span className='maincolor'>Login</span></p>
+ <p  className=' text-center mt-3 '> Already have an account? <Link to="/login" className='maincolor'>Login</Link></p>
  </form>
  
  

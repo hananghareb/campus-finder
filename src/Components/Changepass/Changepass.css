@@ -1,0 +1,62 @@
+.change-password-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* مهم: نخلي العناصر تطلع لفوق */
+    height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  
+  .form-side {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-side h3 {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: left;
+    margin: 0; /* مهم: نشيل أي margin top */
+  }
+  
+  .form-side form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-side label {
+    margin: 10px 0 5px;
+    font-weight: 500;
+  }
+  
+  .form-side input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .save-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--maincolor);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .change-password-title {
+    position: absolute;
+    top: 200px;
+    left: 280px;
+    font-size: 24px;
+    margin: 0;
+    z-index: 10;
+  }
+  .form{
+    margin-top: 90px !important;
+  }

@@ -1,0 +1,44 @@
+.all-events-page {
+    padding-bottom: 60px;
+  }
+  
+  .eventcard {
+    width: 100%;
+    max-width: 300px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    margin: 30px;
+  }
+  
+  .eventcard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  .event-img {
+    padding: 5px;
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+  }
+  
+  .event-info {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .event-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .eventcard-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  

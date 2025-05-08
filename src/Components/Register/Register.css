@@ -5,3 +5,46 @@ span{
 p{
     color: gray!important;
 }
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+  }
+  
+  .logo img {
+    margin-top: 10px;
+    width: 110px !important; 
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .login {
+    padding: 6px 20px;
+    background-color: transparent;
+    border: 1px solid #1E1E1E80;
+    color: #1E1E1E;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  
+  .signup {
+    padding: 6px 20px;
+    background-color: #4C51BF; 
+    border: none;
+    color: white;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+  .nav-line {
+    width: 100%;
+    height: 2px;
+    background-color: #ccc; /* لون الخط */
+  } 
+
+  .img-reg{
+    margin-top: 50px !important;
+  }

@@ -1,0 +1,124 @@
+.section1 {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    background-image: url('../../Images/HOME.png');
+    background-size: 784*108;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.slider-wrapper {
+   margin-top: 50px; 
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .slick-slider {
+    width: 80%; /* أو 90% لو حابة تخليها أوسع */
+    max-width: 900px;
+  }
+  
+  .slider-item {
+    display: flex !important;
+    justify-content: center;
+  }
+  
+  .slider-content {
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+  }
+  
+  .slider-img {
+    width: 120% !important;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    
+  }
+  
+  .slider-title {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1d3557;
+  }
+  
+  .slider-desc {
+    font-size: 18px;
+    color: #4B6587 !important;
+    font-weight: 400;
+  }
+  
+  
+  body {
+    background-image: linear-gradient(to right, rgba(240, 240, 255, 1), rgba(200, 200, 255, 0.9));
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(10px); /* ضبابية خفيفة على الخلفية */
+}
+  
+
+
+.contact-help img {
+    width: 90%;
+    padding: 30px;
+    margin-left: 25px;
+
+}
+.contact-text p{
+    color: #000000 !important;
+    font-weight: 400;
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.contact-text{
+margin-top: 90px;
+
+}
+.contact-text button{
+    padding: 10px 65px;
+    color: #474DA0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-radius: 11px;
+    border: 2px solid #474DA0;
+}
+
+.section2 h3{
+    font-size: 40px;
+    font-weight: 700px;
+  font-family: "Inknut Antiqua", serif;
+}
+.section2 p{
+    margin-top: 23px;
+    font-size: 28px;
+    font-weight: 100px !important;
+    font-family: "Montagu Slab", serif;
+
+}
+.slider-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain; /* Ensures the image covers the area */
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15); /* Soft shadow around the image */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Smooth transitions */
+    filter: blur(0px); /* Initial clear image */
+}
+
+.slider-img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}

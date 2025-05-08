@@ -1,0 +1,31 @@
+
+
+.university-img {
+  width: 100%;
+  height: 300px;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.icon {
+  color: var(--maincolor, #007BFF); /* استخدمي اللون الأساسي بتاعك */
+}
+
+.text-maincolor {
+  color: var(--maincolor, #007BFF);
+}
+body{
+  background-color: transparent !important;
+}
