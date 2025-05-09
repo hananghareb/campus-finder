@@ -68,10 +68,14 @@ export default function Login() {
 
 
 
-if(values.password.length <6 || values.password.length > 12){
-  errors.password = 'password must be at leat 6 character to 12 character'
-
-}
+    if (
+      values.password.length < 6 ||
+      values.password.length > 12 ||
+      !/^[A-Z]/.test(values.password) ||
+      !/\d/.test(values.password)
+    ) {
+      errors.password = 'Password must be 6-12 characters, start with a capital letter, and contain numbers';
+    }
     return errors;
 
   }
@@ -79,35 +83,38 @@ if(values.password.length <6 || values.password.length > 12){
 
 
   return <>
-  <div className="nav-contain">
-  <div className="nav container">
-  <div className="logo">
-    <img src={require('../../Images/logo.png')} alt="logo" />
-  </div>
-  <div className="buttons mt-5 ">
-    <Link to={'/login'}>
-    <button className='login '>Login</button>
-    </Link>
-    <Link to={'/register'}>
-    <button className='signup'>Sign Up</button>
-    </Link>
-  </div>
+
+<div className="login-screen">
+
+<div className="nav-contain">
+<div className="nav container">
+<div className="logo">
+  <img src={require('../../Images/logo.png')} alt="logo" />
+</div>
+<div className="buttons mt-5 ">
+  <Link to={'/login'}>
+  <button className='login '>Login</button>
+  </Link>
+  <Link to={'/register'}>
+  <button className='signup'>Sign Up</button>
+  </Link>
+</div>
 </div>
 <div className="nav-line "></div>
-  </div>
+</div>
 <div className="container  d-flex justify-content-center align-items-center vh-100">
-    <div className="row mt-5">
-        <div className="col-md-6 mt-5">
-            <div className="pic   pe-4 border-dark">
-                <img className='w-100 img-fluid mt-3 ' src={require('../../Images/Frame 1224.png')} alt="login" />
-            </div>
-        </div>
-        <div className="col-md-6 p-5 mt-5">
-            <div className="content">
-            {errmsg ? <div className="alert alert-danger">{errmsg}</div> :""}
-             {successmsg ? <div className="alert alert-success">{successmsg}</div> :""}
+  <div className="row mt-5">
+      <div className="col-md-6 mt-5">
+          <div className="pic   pe-4 border-dark">
+              <img className='w-100 img-fluid mt-3 ' src={require('../../Images/Frame 1224.png')} alt="login" />
+          </div>
+      </div>
+      <div className="col-md-6 p-5 mt-5">
+          <div className="content">
+          {errmsg ? <div className="alert alert-danger">{errmsg}</div> :""}
+           {successmsg ? <div className="alert alert-success">{successmsg}</div> :""}
 
-            <form onSubmit={formikobj.handleSubmit}>
+          <form onSubmit={formikobj.handleSubmit}>
 <label className='' htmlFor="email">Email </label>   
 <input   onBlur={formikobj.handleBlur} onChange={formikobj.handleChange} value={formikobj.values.email} id='email' type="email" placeholder='Enter Email' className= ' mt-2 form-control mb-3 form-label rounded-4' />
 
@@ -134,9 +141,9 @@ Login
 </button>
 
 <div className="divider-container">
-  <div className="line"></div>
-  <span className="divider-text">Or Log In With</span>
-  <div className="line"></div>
+<div className="line"></div>
+<span className="divider-text">Or Log In With</span>
+<div className="line"></div>
 </div>
 
 <div className='social-icons'>
@@ -153,11 +160,13 @@ Login
 
 
 
-            </div>
+          </div>
 
-        </div>
-    </div>
+      </div>
+  </div>
 </div>
-  
-  </>
+</div>
+
+
+ </>
 }
