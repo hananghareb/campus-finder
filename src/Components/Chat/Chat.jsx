@@ -5,7 +5,7 @@ import './Chat.css';
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || '');
+  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || "string");
 
   const getToken = () => localStorage.getItem('tkn');
 
@@ -49,19 +49,13 @@ const ChatBox = () => {
 
     const token = getToken();
 
-    // إعداد جسم الطلب
-    const body = {
-      message: message,
-    };
-
-    if (sessionId) {
-      body.sessionId = sessionId;
-    }
-
     axios
       .post(
         'https://campus-finder.runasp.net/api/Chatbot/ask',
-        body,
+        {
+          sessionId: sessionId || "string",
+          message: message,
+        },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -78,13 +72,11 @@ const ChatBox = () => {
           };
           setMessages((prev) => [...prev, botMessage]);
 
-          // حفظ sessionId لو اتبعت جديد
+          // حفظ sessionId لو لسه ماكانش محفوظ
           if (res.data.data.sessionId && !sessionId) {
             setSessionId(res.data.data.sessionId);
             localStorage.setItem('chat_session_id', res.data.data.sessionId);
           }
-        } else {
-          console.error('Unexpected response:', res.data);
         }
       })
       .catch((err) => console.error('Error sending message:', err));
