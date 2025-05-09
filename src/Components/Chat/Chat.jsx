@@ -1,90 +1,85 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Chat.css';
 
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const messagesEndRef = useRef(null);
+  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || "");
 
   const getToken = () => localStorage.getItem('tkn');
 
-  // Scroll to bottom whenever messages update
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
-  // On mount: if we already have a sessionId, load history
   useEffect(() => {
     const token = getToken();
-    const sessionId = localStorage.getItem('chat_session_id');
-    if (token && sessionId) {
+
+    if (sessionId && token) {
       axios
         .get(`https://campus-finder.runasp.net/api/Chatbot/history/${sessionId}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         })
-        .then(res => {
-          if (res.data.statusCode === 200) {
-            const history = res.data.data.map(msg => ({
+        .then((res) => {
+          if (res.data.statusCode === 200 && res.data.data?.$values) {
+            const history = res.data.data.$values.map((msg) => ({
               text: msg.content,
               sender: msg.role.toLowerCase(),
               timestamp: msg.timestamp,
             }));
             setMessages(history);
+          } else {
+            console.error('Error fetching chat history:', res.data);
           }
         })
-        .catch(err => console.error('Error fetching history:', err));
+        .catch((err) => console.error('Error fetching chat history:', err));
     }
-  }, []);
+  }, [sessionId]);
 
   const handleSend = () => {
-    if (!message.trim()) return;
+    if (message.trim() === '') return;
 
-    // Show user's message immediately
-    setMessages(prev => [
-      ...prev,
-      { text: message, sender: 'user', timestamp: new Date().toISOString() },
-    ]);
-    const outgoing = message;
+    const userMessage = {
+      text: message,
+      sender: 'user',
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
     setMessage('');
 
     const token = getToken();
-    const sessionId = localStorage.getItem('chat_session_id');
-
-    if (!token) {
-      console.error('No token in localStorage');
-      return;
-    }
-
-    // Build request body: include sessionId only if exists
-    const body = { message: outgoing };
-    if (sessionId) {
-      body.sessionId = sessionId;
-    }
 
     axios
-      .post('https://campus-finder.runasp.net/api/Chatbot/ask', body, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+      .post(
+        'https://campus-finder.runasp.net/api/Chatbot/ask',
+        {
+          sessionId: sessionId || "",
+          message: message,
         },
-      })
-      .then(res => {
-        if (res.data.statusCode === 200 && res.data.data.answer) {
-          // Show bot's reply
-          setMessages(prev => [
-            ...prev,
-            { text: res.data.data.answer, sender: 'bot', timestamp: new Date().toISOString() },
-          ]);
-          // Save sessionId if returned
-          if (res.data.data.sessionId) {
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.statusCode === 200 && res.data.data?.answer) {
+          const botMessage = {
+            text: res.data.data.answer,
+            sender: 'bot',
+            timestamp: new Date().toISOString(),
+          };
+          setMessages((prev) => [...prev, botMessage]);
+
+          // حفظ sessionId لو لسه ماكانش محفوظ
+          if (res.data.data.sessionId && !sessionId) {
+            setSessionId(res.data.data.sessionId);
             localStorage.setItem('chat_session_id', res.data.data.sessionId);
           }
-        } else {
-          console.error('API returned error:', res.data);
         }
       })
-      .catch(err => console.error('Error sending message:', err));
+      .catch((err) => console.error('Error sending message:', err));
   };
 
   return (
@@ -93,12 +88,11 @@ const ChatBox = () => {
         <h2 className="chatbox-title">How Can I Help You?</h2>
 
         <div className="chatbox-messages">
-          {messages.map((msg, i) => (
-            <div key={i} className={`chat-msg ${msg.sender}`}>
+          {messages.map((msg, index) => (
+            <div key={index} className={`chat-msg ${msg.sender}`}>
               {msg.text}
             </div>
           ))}
-          <div ref={messagesEndRef} />
         </div>
 
         <div className="chatbox-input-wrapper">
@@ -107,19 +101,21 @@ const ChatBox = () => {
             placeholder="Write Your Message.."
             value={message}
             rows={1}
-            onChange={e => {
+            onChange={(e) => {
               setMessage(e.target.value);
               e.target.style.height = 'auto';
-              e.target.style.height = `${e.target.scrollHeight}px`;
+              e.target.style.height = e.target.scrollHeight + 'px';
             }}
-            onKeyDown={e => {
+            onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 handleSend();
               }
             }}
           />
-          <button className="chatbox-send-btn" onClick={handleSend}>➤</button>
+          <button className="chatbox-send-btn" onClick={handleSend}>
+            ➤
+          </button>
         </div>
       </div>
     </div>
