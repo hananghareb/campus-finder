@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { authcontext } from '../../context/authentication';
 export default function Login() {
-  const {settoken} = useContext(authcontext)
+  const {settoken,setdisplayName,displayName} = useContext(authcontext)
+
   const navigate = useNavigate()
   let user = {
     email:"",
@@ -30,16 +31,18 @@ export default function Login() {
 
     console.log(data);
 
-      if(data.status=="success"){
-        localStorage.setItem('tkn' ,data.token)
-        settoken(data.token)
+    if (data.status == "success") {
+  localStorage.setItem('tkn', data.token);
+  localStorage.setItem('displayName', data.displayName); // أضف دي
+  settoken(data.token);
+  setdisplayName(data.displayName); // أضف دي
 
-              setsuccessmsg('Login Successfully');
-              setTimeout(function(){
-                navigate('/')
-              },)
+  setsuccessmsg('Login Successfully');
+  setTimeout(() => {
+    navigate('/');
+  }, 1000);
+}
 
-      }
     }
 
     catch (err) {

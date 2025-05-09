@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Navbar.css';
 
 export default function Navbar() {
-  const { token, settoken } = useContext(authcontext);
+  const { token, settoken, displayName, setdisplayName } = useContext(authcontext); // إضافة displayName و setdisplayName هنا
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [profileData, setProfileData] = useState({
     userName: '',
@@ -16,7 +16,9 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem('tkn');
+    localStorage.removeItem('displayName'); // حذف الـ displayName من localStorage
     settoken(null);
+    setdisplayName(null); // مسح الـ displayName من الـ context
     setDropdownOpen(false);
   };
 
@@ -72,7 +74,7 @@ export default function Navbar() {
               <div className="nav-end ms-auto me-5 position-relative">
                 <div className="user-info d-flex align-items-center" onClick={toggleDropdown} style={{ cursor: 'pointer' }}>
                   <i className="fa-solid fa-user ms-2 me-1"></i>
-                  <h6 className="mb-0 ms-2">{profileData.userName || 'User'}</h6>
+                  <h6 className="mb-0 ms-2">{displayName || 'User'}</h6> {/* استخدم displayName من الـ context هنا */}
                 </div>
 
                 {isDropdownOpen && (
@@ -83,7 +85,7 @@ export default function Navbar() {
                         className="user-img"
                         alt="User"
                       />
-                      <p className="user-name">{profileData.userName || 'User'}</p>
+                      <p className="user-name">{displayName || 'User'}</p> {/* استخدم displayName هنا كمان */}
                     </div>
 
                     <Link to={'/profile'} onClick={() => setDropdownOpen(false)}>

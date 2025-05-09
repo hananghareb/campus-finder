@@ -1,23 +1,29 @@
-import { useEffect } from "react";
-import { createContext, useState } from "react";
-export const authcontext = createContext()
-export function Authprovider( {children}){
+// src/context/authentication.js
 
- 
-    const [token, settoken] = useState(null)
+import { useEffect, useState, createContext } from "react";
 
+export const authcontext = createContext();
 
-    useEffect(function(){
-        if(localStorage.getItem('tkn') !== 'null'){
-            settoken(localStorage.getItem('tkn'))
-        }
+export function Authprovider({ children }) {
+  const [token, settoken] = useState(null);
+  const [displayName, setdisplayName] = useState(null);
 
-    },[])
+  useEffect(() => {
+    const storedToken = localStorage.getItem("tkn");
+    const storedName = localStorage.getItem("displayName");
 
+    if (storedToken && storedToken !== "null") {
+      settoken(storedToken);
+    }
 
-    return <authcontext.Provider value={{token,settoken }}>
-    
-    {children}
+    if (storedName && storedName !== "null") {
+      setdisplayName(storedName);
+    }
+  }, []);
 
+  return (
+    <authcontext.Provider value={{ token, settoken, displayName, setdisplayName }}>
+      {children}
     </authcontext.Provider>
+  );
 }
