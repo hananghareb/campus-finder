@@ -105,8 +105,7 @@ const [isloading, setisloading] = useState(false)
  })
 
 
- return 
- <>
+ return <>
 
 <div className="reg-screen">
 
@@ -117,7 +116,7 @@ const [isloading, setisloading] = useState(false)
   </div>
   <div className="buttons mt-5 ">
     <Link to={'/login'}>
-    <button className='login '>Login.</button>
+    <button className='login '>Login</button>
     </Link>
     <Link to={'/register'}>
     <button className='signup'>Sign Up</button>
