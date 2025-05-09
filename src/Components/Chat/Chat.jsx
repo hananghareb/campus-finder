@@ -53,7 +53,7 @@ const ChatBox = () => {
       .post(
         'https://campus-finder.runasp.net/api/Chatbot/ask',
         {
-          sessionId: sessionId || "",
+          sessionId: sessionId || "null",
           message: message,
         },
         {
