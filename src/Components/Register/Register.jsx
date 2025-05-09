@@ -107,8 +107,6 @@ const [isloading, setisloading] = useState(false)
 
  return <>
 
-<div className="reg-screen">
-
 <div className="nav-contain">
   <div className="nav container">
   <div className="logo">
@@ -122,12 +120,12 @@ const [isloading, setisloading] = useState(false)
     <button className='signup'>Sign Up</button>
     </Link>
   </div>
-
+</div>
 <div className="nav-line"></div>
 </div>
 
  
-  </div>
+  
  <div className="container d-flex justify-content-center align-items-center vh-100">
      <div className="row">
          <div className="col-md-6">
@@ -184,13 +182,9 @@ const [isloading, setisloading] = useState(false)
          </div>
      </div>
  </div>
- 
- 
    
-   
-</div>
+   </>
 
-</>
 
 }
 

@@ -89,7 +89,7 @@ export default function Login() {
 <div className="nav-contain">
 <div className="nav container">
 <div className="logo">
-  <img src={require('../../Images/logo.png')} alt="logo" />
+  <img className="img-logo" src={require('../../Images/logo2.png')} alt="logo" />
 </div>
 <div className="buttons mt-5 ">
   <Link to={'/login'}>
@@ -106,7 +106,7 @@ export default function Login() {
   <div className="row mt-5">
       <div className="col-md-6 mt-5">
           <div className="pic   pe-4 border-dark">
-              <img className='w-100 img-fluid mt-3 ' src={require('../../Images/Frame 1224.png')} alt="login" />
+              <img className='w-100 img-fluid mt-3 img-log  ' src={require('../../Images/Frame 1224.png')} alt="login" />
           </div>
       </div>
       <div className="col-md-6 p-5 mt-5">

@@ -1,19 +1,48 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { authcontext } from './../../context/authentication';
+import axios from 'axios';
 import './Navbar.css';
 
 export default function Navbar() {
-  const { token, settoken } = useContext(authcontext); // اضافه setToken من الـ context
+  const { token, settoken } = useContext(authcontext);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [profileData, setProfileData] = useState({
+    userName: '',
+    imageProfileUrl: '',
+  });
 
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
 
   const handleLogout = () => {
-    localStorage.removeItem('tkn'); // حذف التوكن من الـ localStorage
-    settoken(null); // تحديث الـ state في الـ context
-    setDropdownOpen(false); // إغلاق الدروب داون
+    localStorage.removeItem('tkn');
+    settoken(null);
+    setDropdownOpen(false);
   };
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('tkn');
+      if (!token) return;
+
+      try {
+        const response = await axios.get('https://campus-finder.runasp.net/api/Account/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setProfileData({
+          userName: response.data.userName || '',
+          imageProfileUrl: response.data.imageProfileUrl || '',
+        });
+      } catch (error) {
+        console.error('Error fetching navbar profile:', error.response?.data || error.message);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <>
@@ -41,17 +70,22 @@ export default function Navbar() {
               </ul>
 
               <div className="nav-end ms-auto me-5 position-relative">
-                <div className="user-info" onClick={toggleDropdown}>
+                <div className="user-info d-flex align-items-center" onClick={toggleDropdown} style={{ cursor: 'pointer' }}>
                   <i className="fa-solid fa-user ms-2 me-1"></i>
-                  <h6 className="mb-0">Hanan</h6>
+                  <h6 className="mb-0 ms-2">{profileData.userName || 'User'}</h6>
                 </div>
 
                 {isDropdownOpen && (
                   <div className="user-menu position-absolute mt-2 end-0">
                     <div className="user-center">
-                      <img src= {require('../../Images/profile.jpeg')} className="user-img" alt="User" />
-                      <p className="user-name">Hanan</p>
+                      <img
+                        src={profileData.imageProfileUrl || require('../../Images/profile.jpeg')}
+                        className="user-img"
+                        alt="User"
+                      />
+                      <p className="user-name">{profileData.userName || 'User'}</p>
                     </div>
+
                     <Link to={'/profile'} onClick={() => setDropdownOpen(false)}>
                       <div className="dropdown-link">
                         <div className="icon-circle me-2"><i className="fa-regular fa-user"></i></div>

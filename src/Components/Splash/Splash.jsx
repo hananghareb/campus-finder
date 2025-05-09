@@ -13,7 +13,7 @@ export default function SplashScreen() {
       <div className="nav-contain">
         <div className="nav container">
           <div className="logo">
-            <img src={require('../../Images/logo.png')} alt="logo" />
+            <img className='me-5 ' src={require('../../Images/logo2.png')} alt="logo" />
           </div>
           <div className="buttons mt-5">
             <Link to={'/login'}>
@@ -25,16 +25,15 @@ export default function SplashScreen() {
           </div>
         </div>
       </div>
-        <div className="text-box">
-          <h1>
-            Find Your <span className="highlight">University</span> and<br />
+        <div className="text-box ">
+          <h1 >Find Your<span className="highlight">University  </span> and<br />
             majer here
           </h1>
           <p>Campus Finder help you to find perfect <br /> <span className='uni'>university and majer</span></p>
         </div>
       </div>}
 
-      
+
     </>
   );
 }
