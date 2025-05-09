@@ -5,7 +5,7 @@ import './Chat.css';
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || "string");
+  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || "");
 
   const getToken = () => localStorage.getItem('tkn');
 
@@ -53,7 +53,7 @@ const ChatBox = () => {
       .post(
         'https://campus-finder.runasp.net/api/Chatbot/ask',
         {
-          sessionId: sessionId || "string",
+          sessionId: sessionId || "",
           message: message,
         },
         {
