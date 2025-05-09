@@ -44,7 +44,7 @@ export default function Login() {
 
     catch (err) {
       if (err.response) {
-        seterrmsg(err.response.data.message);
+        seterrmsg("email or password incorrect");
       } else {
         seterrmsg("Network error. Please try again later.");
       }

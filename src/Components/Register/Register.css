@@ -5,6 +5,11 @@ span{
 p{
     color: gray!important;
 }
+
+
+.reg-screen{
+  background-color:white !important ;
+}
 .nav {
     display: flex;
     justify-content: space-between;

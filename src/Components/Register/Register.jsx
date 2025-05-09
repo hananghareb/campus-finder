@@ -83,17 +83,20 @@ const [isloading, setisloading] = useState(false)
 
     const errors = {}
     if(values.displayname.length <4 || values.displayname.length > 20){
-      errors.displayname = 'name must be at leat 4 character to 10 character'
+      errors.displayname = 'name must be at leat 3 character to 10 character'
     }
 
     if(values.email.includes('@')=== false || values.email.includes('.')=== false   ){
-      errors.email = 'emai'
+      errors.email = 'email invaild'
     }
-
-if(values.password.length <6 || values.password.length > 12){
-  errors.password = 'password must be at leat 6 character to 12 character'
-
-}
+    if (
+      values.password.length < 6 ||
+      values.password.length > 12 ||
+      !/^[A-Z]/.test(values.password) ||
+      !/\d/.test(values.password)
+    ) {
+      errors.password = 'Password must be 6-12 characters, start with a capital letter, and contain numbers';
+    }
 
 
     return errors;
@@ -104,7 +107,9 @@ if(values.password.length <6 || values.password.length > 12){
 
  return <>
 
- <div className="nav-contain">
+<div className="reg-screen">
+
+<div className="nav-contain">
   <div className="nav container">
   <div className="logo">
     <img src={require('../../Images/logo.png')} alt="logo" />
@@ -119,6 +124,9 @@ if(values.password.length <6 || values.password.length > 12){
   </div>
 </div>
 <div className="nav-line"></div>
+</div>
+
+ 
   </div>
  <div className="container d-flex justify-content-center align-items-center vh-100">
      <div className="row">
