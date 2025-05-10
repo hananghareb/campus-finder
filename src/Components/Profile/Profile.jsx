@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import './Profile.css';
+import { authcontext } from "../../context/authentication";
 
 const ProfileSettings = () => {
+    const {displayName } = useContext(authcontext); // إضافة displayName و setdisplayName هنا
+  
   const [profileData, setProfileData] = useState({
     userName: '',
     email: '',
@@ -53,11 +56,11 @@ const ProfileSettings = () => {
               <div className="row mb-3">
                 <div className="col-md-6">
                   <label className="form-label">Name</label>
-                  <input type="text" className="form-control" defaultValue="Hanan" />
+                  <input type="text" readOnly className="form-control" defaultValue={displayName} />
                 </div>
                 <div className="col-md-6">
                   <label className="form-label">Password</label>
-                  <input type="password" className="form-control" defaultValue="******" />
+                  <input type="password" className="form-control" readOnly defaultValue="**********" />
                 </div>
               </div>
               <div className="row mb-3">
@@ -84,13 +87,13 @@ const ProfileSettings = () => {
                 </div>
                 <div className="col-md-6">
                   <label className="form-label">Bio</label>
-                  <input type="text" className="form-control" defaultValue={"Lover of technology and creativity. 🚀"} placeholder="Short bio" />
+                  <input type="text" className="form-control" readOnly defaultValue={"Lover of technology and creativity. 🚀"} placeholder="Short bio" />
                 </div>
               </div>
               <div className="row mb-4">
                 <div className="col-md-6">
                   <label className="form-label">Location</label>
-                  <input type="text" className="form-control" defaultValue="Eygpt" />
+                  <input type="text" className="form-control" readOnly defaultValue="Eygpt" />
                 </div>
                 <div className="col-md-6">
   <label className="form-label text-center d-flex justify-content-center mt-1">Social</label>
