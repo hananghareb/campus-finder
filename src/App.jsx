@@ -27,6 +27,7 @@ import CreateUni from './Components/Createuni/Createuni';
 import Collages from './Components/Colleges/Colleges';
 import SplashScreen from './Components/Splash/Splash';
 import RedirectBasd from './Components/RedirectBased/RedirectBased';   
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 
 const myrouter = createBrowserRouter([
   { path: "/", element: <RedirectBasd/> }, 
@@ -35,25 +36,61 @@ const myrouter = createBrowserRouter([
 
   {
     path: "/",
-    element: <Layout />,
+    element:  <Layout />,
     children: [
-      { path: "home", element: <Home /> }, // ✅ ما تستخدمش index
-      { path: "DetailsUni/:id", element: <DetailsUni /> },
-      { path: "Editprofile", element: <EditPro /> },
-      { path: "universities", element: <Alluni /> },
-      { path: "events", element: <Events /> },
-      { path: "chat", element: <Chat /> },
-      { path: "contactus", element: <ContactUs /> },
-      { path: "aboutus", element: <AboutUs /> },
-      { path: "profile", element: <Profile /> },
-      { path: "settings", element: <Settings /> },
-      { path: "login", element: <Login /> },
-      { path: "changepassword", element: <Changepass /> },
-      { path: "allevents", element: <Allevents /> },
-      { path: "EventDetails/:id", element: <Detailsevents /> },
+      { path: "home", element: <ProtectedRoute>
+<Home />
+      </ProtectedRoute>  }, 
+      
+      // ✅ ما تستخدمش index
+      { path: "DetailsUni/:id", element: <ProtectedRoute>
+        <DetailsUni /> 
+      </ProtectedRoute>},
+
+      { path: "Editprofile", element: <ProtectedRoute>
+<EditPro />
+      </ProtectedRoute> },
+
+      { path: "universities", element: <ProtectedRoute>
+        <Alluni />
+      </ProtectedRoute> },
+      
+      { path: "events", element:<ProtectedRoute>
+         <Events />
+      </ProtectedRoute> },
+      { path: "chat", element: <ProtectedRoute>
+        <Chat /> 
+      </ProtectedRoute>},
+      { path: "contactus", element: <ProtectedRoute>
+        <ContactUs />
+      </ProtectedRoute> },
+      { path: "aboutus", element: <ProtectedRoute>
+        <AboutUs />
+      </ProtectedRoute> },
+      { path: "profile", element: <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute> },
+      { path: "settings", element: <ProtectedRoute>
+        <Settings /> 
+      </ProtectedRoute>},
+      { path: "login", element: 
+        <Login />},
+      { path: "changepassword", element: <ProtectedRoute>
+        <Changepass />
+      </ProtectedRoute> },
+      { path: "allevents", element: <ProtectedRoute>
+        <Allevents />
+      </ProtectedRoute> },
+      { path: "EventDetails/:id", element: <ProtectedRoute>
+        <Detailsevents />
+      </ProtectedRoute> },
       { path: "dashboard", element: <Dashboard /> },
-      { path: "update-uni/:id", element: <Updateuni /> },
-      { path: "college/:id", element: <Collages /> },
+      { path: "update-uni/:id", element: <ProtectedRoute>
+        <Updateuni /> 
+      </ProtectedRoute>},
+      { path: "college/:id", element: <ProtectedRoute>
+        <Collages />
+      </ProtectedRoute> },
       { path: "create-uni", element: <CreateUni /> },
       { path: "forget", element: <Forgetpassword /> },
       { path: "verify", element: <Verifypassword /> },

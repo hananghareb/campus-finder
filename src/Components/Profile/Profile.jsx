@@ -16,7 +16,6 @@ const ProfileSettings = () => {
     const fetchProfile = async () => {
       const token = localStorage.getItem('tkn'); // خدي التوكن من localStorage
       if (!token) return;
-
       try {
         const response = await axios.get('https://campus-finder.runasp.net/api/Account/profile', {
           headers: {
