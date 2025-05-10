@@ -47,7 +47,8 @@ export default function Login() {
 
     catch (err) {
       if (err.response) {
-        seterrmsg("email or password incorrect or not confirm");
+                seterrmsg(err.response.data.message);
+
       } else {
         seterrmsg("Network error. Please try again later.");
       }
@@ -144,7 +145,7 @@ Login
 </button>
 
 
-<p  className=' text-center mt-3  '> Dont have an account ? <Link to="/register" className='maincolor'>create account</Link></p>
+<p  className=' text-center mt-2  '> Dont have an account ? <Link to="/register" className='maincolor'>create account</Link></p>
 
 
 </form>

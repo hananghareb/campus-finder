@@ -133,7 +133,7 @@ export default function Verifypassword() {
 
         <h1 className="maincolor d-flex justify-content-center align-items-center mt-5 "> Verify Password  </h1>
 
-        <p className="text-center"> Please enter the 4 digit code sent to  <br />
+        <p className="text-center"> Please enter the 6 digit code sent to  <br />
                     <span className="text-center me-5"> {email} </span>
                </p>
 
