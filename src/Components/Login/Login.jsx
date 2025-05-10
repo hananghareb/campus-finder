@@ -47,7 +47,7 @@ export default function Login() {
 
     catch (err) {
       if (err.response) {
-        seterrmsg("email or password incorrect or not confirm email");
+        seterrmsg("email or password incorrect or not confirm");
       } else {
         seterrmsg("Network error. Please try again later.");
       }
@@ -134,7 +134,7 @@ export default function Login() {
 :"" }
 
 
-<div className='d-flex align-items-end flex-column mb-3'>
+<div className='d-flex align-items-end flex-column mb-0'>
 <Link className='maincolor ' to='/forget'>Forget Password...?</Link>
 
 </div>
@@ -143,20 +143,8 @@ export default function Login() {
 Login
 </button>
 
-<div className="divider-container">
-<div className="line"></div>
-<span className="divider-text m-0">Or Log In With</span>
-<div className="line"></div>
-</div>
 
-<div className='social-icons'>
-<i className="fa-brands fa-facebook facebook "></i>
-<i className="fa-brands fa-twitter twitter"></i>
-<i className="fa-brands fa-google google"></i>
-
-</div>
-
-<p  className=' text-center mt-3 '> Dont have an account ? <Link to="/register" className='maincolor'>create account</Link></p>
+<p  className=' text-center mt-3  '> Dont have an account ? <Link to="/register" className='maincolor'>create account</Link></p>
 
 
 </form>

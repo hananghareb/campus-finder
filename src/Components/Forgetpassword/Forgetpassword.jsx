@@ -46,7 +46,7 @@ export default function Forgetpassword() {
 
             setTimeout(function(){
               navigate('/verify', {state:{email:values.email}})
-            },3000)
+            },2000)
     
           }
         }
@@ -115,13 +115,12 @@ export default function Forgetpassword() {
   <div className="container d-flex justify-content-center align-items-center vh-100">
 
     <div className="row">
-        <div className="col-md-6">
-            <div className="pic  pe-4 border-dark">
-                <img className='w-100 img-fluid mt-5 ' src={require('../../Images/Frame 1223.png')} alt="forgetpass" />
+ <div className="col-md-6 d-flex justify-content-center align-items-center fixed-image-col">
+  <div className="fixed-image-wrapper mt-5">
+    <img className='img-fluid mt-5' src={require('../../Images/Frame 1223.png')} alt="forgetpass" />
+  </div>
+</div>
 
-            </div>
-
-        </div>
 
         <div className="col-md-6  d-flex justify-content-center align-items-center mb-5 ">
             <div className="content ">
