@@ -80,11 +80,18 @@ export default function Navbar() {
                 {isDropdownOpen && (
                   <div className="user-menu position-absolute mt-2 end-0">
                     <div className="user-center">
-                      <img
-                        src={profileData.imageProfileUrl || require('../../Images/profile.jpeg')}
-                        className="user-img"
-                        alt="User"
-                      />
+                  {profileData.imageProfileUrl ? (
+  <img
+    src={profileData.imageProfileUrl}
+    className="user-img"
+    alt="User"
+  />
+) : (
+  <div className="placeholder-icon-nav">
+    <i className="fa-solid fa-user"></i>
+  </div>
+)}
+
                       <p className="user-name">{displayName || 'User'}</p> {/* استخدم displayName هنا كمان */}
                     </div>
 

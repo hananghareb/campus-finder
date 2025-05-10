@@ -9,7 +9,7 @@ export default function EditProfile() {
   const [messageType, setMessageType] = useState('');
   const fileInputRef = useRef(null);
 
-  const token = localStorage.getItem('tkn'); // جيبي التوكين هنا
+  const token = localStorage.getItem('tkn');
 
   useEffect(() => {
     axios.get('https://campus-finder.runasp.net/api/Account/profile', {
@@ -21,7 +21,7 @@ export default function EditProfile() {
       setProfile({
         username: res.data.userName || '',
         email: res.data.email || '',
-        imagePreview: res.data.imageProfileUrl ,
+        imagePreview: res.data.imageProfileUrl || '',
       });
     })
     .catch((err) => {
@@ -67,7 +67,6 @@ export default function EditProfile() {
       },
     })
     .then((res) => {
-      console.log('Profile updated successfully:', res.data);
       setMessage('Profile updated successfully!');
       setMessageType('success');
     })
@@ -84,13 +83,19 @@ export default function EditProfile() {
         <h3>Edit Profile</h3>
 
         {message && (
-          <div className={`message ${messageType}`} >
+          <div className={`message ${messageType}`}>
             {message}
           </div>
         )}
 
-        <div className="profile-pic" onClick={handleImageClick} style={{ cursor: 'pointer' }}>
-          <img src={profile.imagePreview} alt="Profile" />
+        <div className="profile-pic" onClick={handleImageClick} style={{ cursor: 'pointer', position: 'relative' }}>
+          {profile.imagePreview ? (
+            <img src={profile.imagePreview} alt="Profile" />
+          ) : (
+            <div className="placeholder-icon">
+              <i className="fa-solid fa-user-circle"></i>
+            </div>
+          )}
           <span className="edit-icon">
             <i className="fa-solid fa-pen"></i>
           </span>
@@ -104,15 +109,13 @@ export default function EditProfile() {
         </div>
 
         <form className="profile-form" onSubmit={handleSubmit}>
-          <label> Username</label>
+          <label>Username</label>
           <input
             type="text"
             value={profile.username}
             onChange={handleInputChange}
             placeholder="Enter your Username"
           />
-
-        
 
           <div className="buttons">
             <button type="button" className="cancel1-btn">Cancel</button>

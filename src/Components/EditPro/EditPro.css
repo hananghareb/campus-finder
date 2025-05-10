@@ -1,227 +1,161 @@
 .profile-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #fff;
-  }
-  
-  .sidebar {
-    width: 220px;
-    padding: 30px 20px;
-    border-right: 1px solid #ccc;
-    background-color: #f9f9f9;
-  }
-  
-  .sidebar-item {
-    padding: 10px 15px;
-    font-size: 15px;
-    color: #555;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: default;
-  }
-  
-  .sidebar-item.active {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .sidebar-item.disabled {
-    color: #aaa;
-    pointer-events: none;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 40px;
-  }
-  
-  .content h3 {
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .profile-pic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin-bottom: 30px;
-  }
-  
-  .profile-pic img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
-  
-  .edit-icon {
-    position: absolute;
-    bottom: 0;
-    right: calc(50% - 50px);
-    background-color: #007bff;
-    color: white;
-    border-radius: 50%;
-    padding: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    border: 2px solid white;
-  }
-  
-  .profile-form {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .profile-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  
-  .profile-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .cancel1-btn,
-  .save1-btn {
-    padding: 10px 25px !important;
-    font-size: 15px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .cancel1-btn {
-    border: 1px solid #007bff;
-    background: white;
-    color: #007bff;
-  }
-  
-  .save1-btn {
-    padding: 10px 30px !important;
-    background: #007bff;
-    color: white;
-    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
-  }
-  .profile-container {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    background-color: #fff;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 40px;
-  }
-  
-  .profile-pic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin-bottom: 30px;
-  }
-  
-  .profile-pic img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    cursor: pointer; /* جعل الصورة قابلة للنقر */
-  }
-  
-  .edit-icon {
-    position: absolute;
-    bottom: 0;
-    right: calc(50% - 50px);
-    background-color: #007bff;
-    color: white;
-    border-radius: 50%;
-    padding: 6px;
-    font-size: 12px;
-    cursor: pointer;
-    border: 2px solid white;
-  }
-  
-  .profile-form {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  
-  .profile-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-  }
-  
-  .profile-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .cancel1-btn,
-  .save1-btn {
-    padding: 10px 25px !important;
-    font-size: 15px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .cancel1-btn {
-    border: 1px solid #007bff;
-    background: white;
-    color: #007bff;
-  }
-  
-  .save1-btn {
-    padding: 10px 30px !important;
-    background: #007bff;
-    color: white;
-    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
-  }
-  .message {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-align: center;
-    width: 50%;
-    margin: 10px auto;
-    background-color: rgba(0, 0, 0, 0.1) !important; /* خلفية خفيفة مع شفافية */
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+}
 
+.sidebar {
+  width: 220px;
+  padding: 30px 20px;
+  border-right: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
 
-  }
-  
-  .message.success {
-    background-color: beige;
-    color: gray;
-  }
-  
-  .message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-  }
-  
+.sidebar-item {
+  padding: 10px 15px;
+  font-size: 15px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: default;
+}
+
+.sidebar-item.active {
+  font-weight: bold;
+  color: #000;
+}
+
+.sidebar-item.disabled {
+  color: #aaa;
+  pointer-events: none;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+}
+
+.content h3 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.profile-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+  width: 120px;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+
+.placeholder-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100px;
+  color: #bbb;
+  cursor: pointer;
+  border: 2px solid #ccc;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  padding: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profile-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.profile-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.cancel1-btn,
+.save1-btn {
+  padding: 10px 25px !important;
+  font-size: 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel1-btn {
+  border: 1px solid #007bff;
+  background: white;
+  color: #007bff;
+}
+
+.save1-btn {
+  padding: 10px 30px !important;
+  background: #007bff;
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+.message {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  width: 50%;
+  margin: 10px auto;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.message.success {
+  background-color: beige;
+  color: gray;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
