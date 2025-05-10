@@ -85,7 +85,7 @@ const ChatBox = () => {
   return (
     <div className="chatbox-container">
       <div className="chatbox-inner">
-        <h2 className="chatbox-title">How Can I Help You? yy hhhhhhh</h2>
+        <h2 className="chatbox-title">How Can I Help You?</h2>
 
         <div className="chatbox-messages">
           {messages.map((msg, index) => (

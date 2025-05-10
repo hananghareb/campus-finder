@@ -52,7 +52,7 @@ export default function Navbar() {
         <nav className="navbar navbar-expand-lg">
           <div className="d-flex align-items-center w-100">
             <NavLink className="navbar-brand me-4 d-flex align-items-center" to="/">
-              <img className="img-nav" src={require('../../Images/logo.png')} alt="logo" />
+              <img className="img-nav" src={require('../../Images/logo2.png')} alt="logo" />
             </NavLink>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">

@@ -5,8 +5,10 @@
   }
   
   .img-nav {
-    width: 55%;
-    margin-left: 50px;
+    width: 160px !important;
+    height: 100px;
+    margin-left: 30px;
+    margin-right: 20px;
   }
   
   .navbar {

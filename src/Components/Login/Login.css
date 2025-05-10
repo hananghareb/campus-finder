@@ -8,8 +8,7 @@
     margin: 20px 0;
   }
   .img-log{
-
-    color:transparent!important;
+    margin-top: 50px !important;
   }
   .line {
     flex: 1;
@@ -63,14 +62,8 @@
     padding: 15px 40px;
   }
   
-  .logo img {
-    margin-top: 10px;
-    width: 100% !important; 
-  }
-  
-  .img-logo{
-    width:200% !important ;
-  }
+
+
 
   .buttons {
     display: flex;
@@ -104,3 +97,8 @@
     margin-top: 50px !important;
   }
   
+    
+  .logo .img-logo{
+    width:100px !important ;
+    margin-left: 0px;
+  }

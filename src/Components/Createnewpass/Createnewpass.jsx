@@ -80,7 +80,7 @@ export default function Createnewpass() {
  <div className="nav-contain">
   <div className="nav container">
   <div className="logo">
-    <img src={require('../../Images/logo.png')} alt="logo" />
+    <img src={require('../../Images/logo2.png')} alt="logo" />
   </div>
   <div className="buttons mt-5">
     <Link to={'/login'}>

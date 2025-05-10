@@ -26,10 +26,10 @@ export default function SplashScreen() {
         </div>
       </div>
         <div className="text-box ">
-          <h1 >Find Your<span className="highlight">University  </span> and<br />
-            majer here
+          <h1 >Find Your <span className="highlight m-0"> University  </span> and<br />
+            major here
           </h1>
-          <p>Campus Finder help you to find perfect <br /> <span className='uni'>university and majer</span></p>
+          <p>Campus Finder help you to find perfect <br /> <span className='uni'>university and major</span></p>
         </div>
       </div>}
 

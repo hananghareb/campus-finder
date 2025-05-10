@@ -40,7 +40,7 @@ export default function Login() {
   setsuccessmsg('Login Successfully');
   setTimeout(() => {
     navigate('/');
-  }, 1000);
+  });
 }
 
     }
@@ -109,7 +109,7 @@ export default function Login() {
   <div className="row mt-5">
       <div className="col-md-6 mt-5">
           <div className="pic   pe-4 border-dark">
-              <img className='w-100 img-fluid mt-3 img-log  ' src={require('../../Images/Frame 1224.png')} alt="login" />
+              <img className='w-100 img-fluid mt-3 img-log mt-5  ' src={require('../../Images/Frame 1224.png')} alt="login" />
           </div>
       </div>
       <div className="col-md-6 p-5 mt-5">
@@ -145,7 +145,7 @@ Login
 
 <div className="divider-container">
 <div className="line"></div>
-<span className="divider-text">Or Log In With</span>
+<span className="divider-text m-0">Or Log In With</span>
 <div className="line"></div>
 </div>
 

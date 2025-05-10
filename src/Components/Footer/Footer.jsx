@@ -12,7 +12,7 @@ export default function Footer() {
     <div className='footer-2 d-flex justify-content-around '>
 
     <div className="footer-content">
-          <img src={require('../../Images/footer.png')} alt="Campus Finder" /> 
+          <img src={require('../../Images/logo2.png')} alt="Campus Finder" /> 
           <p>We help you find your <br /> University</p>
       </div>
 
@@ -26,23 +26,23 @@ export default function Footer() {
       <div className="contact">
         <h3>Contact</h3>
 
-        <div className="list">
+        <div className="list ">
           <ul>
             <li>
-            <i className="fas fa-map-marker-alt me-2 "></i>
+            <i className="fas fa-map-marker-alt  "></i>
               127 King St, Melbourne den 3000, <br />
-               <span className='text-center ms-5'>Australia</span> 
+               <span className='text-center '>Australia</span> 
 
           
             </li>
             <li>
-            <i className="fas fa-envelope me-3 mt-2 ms-1"></i>
+            <i className="fas fa-envelope  mt-2 "></i>
             Info@example.com
 
             
             </li>
             <li>
-            <i className="fas fa-phone me-3"></i>
+            <i className="fas fa-phone "></i>
             +49 999999999
             
             </li>
