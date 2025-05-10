@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import './Colleges.css'
+import './Colleges.css';
 import {
   FaMoneyBillWave,
   FaClock,
@@ -61,6 +61,19 @@ export default function CollegeDetails() {
             </div>
           ))}
         </div>
+
+        <h5 className="fw-bold mt-4">Majors</h5>
+        <div className="row">
+          {college.majors?.$values?.map((major, idx) => (
+            <div className="col-md-6 mb-3" key={idx}>
+              <div className="p-3 border rounded-3 shadow-sm">
+                <h6 className="fw-bold text-maincolor">{major.name}</h6>
+                <p className="text-muted mb-0">{major.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
       </div>
     </div>
   );
