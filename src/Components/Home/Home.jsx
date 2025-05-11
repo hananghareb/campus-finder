@@ -51,7 +51,7 @@ export default function Home() {
       <Home_uni />
       <Events/>
       {/* Contact Section */}
-      <div className="contact-help d-flex m-5 ">
+      <div className="contact-help d-flex m-5 mt-5 ">
         <div className="img w-50 ">
           <img src={require('../../Images/contact1.png')} alt="contact" />
         </div>
