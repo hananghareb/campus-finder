@@ -69,6 +69,17 @@ export default function Navbar() {
                 <li className="nav-item mx-2">
                   <NavLink to="/contactus" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Contact Us</NavLink>
                 </li>
+               <li className="nav-item">
+  <NavLink
+    to="/top10"
+    className={({ isActive }) =>
+      isActive ? 'nav-link top10-link active' : 'nav-link top10-link'
+    }
+  >
+    Top 10<span className="trophy">🏆</span>
+  </NavLink>
+</li>
+
               </ul>
 
               <div className="nav-end ms-auto me-5 position-relative">

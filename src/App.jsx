@@ -28,7 +28,7 @@ import Collages from './Components/Colleges/Colleges';
 import SplashScreen from './Components/Splash/Splash';
 import RedirectBasd from './Components/RedirectBased/RedirectBased';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
-
+import Top10 from './Components/Top10/Top10'
 const myrouter = createBrowserRouter([
   { path: '/', element: <RedirectBasd /> },
   { path: '/splash', element: <SplashScreen /> },
@@ -74,6 +74,8 @@ const myrouter = createBrowserRouter([
       { path: 'verify', element: <Verifypassword /> },
       { path: 'newpass', element: <Createnewpass /> },
       { path: 'register', element: <Register /> },
+      { path: 'top10', element: <Top10 /> },
+
     ],
   },
 ]);

@@ -167,4 +167,34 @@
     color: var(--icon-color);
     font-size: 16px;
   }
-  
+  .top10-link {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #ff9900;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.top10-link .trophy {
+  font-size: 1.1rem;
+  margin-left: 4px;
+  animation: pulse 1.5s infinite;
+}
+
+.top10-link:hover {
+  color: #e67e22;
+  transform: scale(1.05);
+}
+
+.top10-link.active {
+  color: #d35400;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
