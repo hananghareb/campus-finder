@@ -49,18 +49,27 @@ export default function CollegeDetails() {
           ))}
         </div>
 
-        <h5 className="fw-bold mt-4">English Tests</h5>
-        <div className="row">
-          {college.englishTests.$values.map((test, idx) => (
-            <div className="col-md-6 mb-3" key={idx}>
-              <div className="p-3 border rounded-3 shadow-sm">
-                <FaBookOpen className="me-2 text-maincolor" />
-                <strong>{test.testName}</strong><br />
-                <small>Min Score: {test.minScore}</small>
-              </div>
-            </div>
-          ))}
+   <h5 className="fw-bold mt-4">English Tests</h5>
+<div className="row">
+  {college.englishTests?.$values?.length > 0 ? (
+    college.englishTests.$values.map((test, idx) => (
+      <div className="col-md-6 mb-3" key={idx}>
+        <div className="p-3 border rounded-3 shadow-sm">
+          <FaBookOpen className="me-2 text-maincolor" />
+          <strong>{test.testName}</strong><br />
+          <small>Min Score: {test.minScore}</small>
         </div>
+      </div>
+    ))
+  ) : (
+    <div className="col-12 text-center">
+      <div className="alert alert-dark w-25 mx-auto mt-2 fst-italic">
+        "This college does not have any associated English tests."
+      </div>
+    </div>
+  )}
+</div>
+
 
         <h5 className="fw-bold mt-4">Majors</h5>
 <div className="row">

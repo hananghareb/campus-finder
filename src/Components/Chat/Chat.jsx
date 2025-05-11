@@ -5,7 +5,8 @@ import './Chat.css';
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || "");
+  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || '');
+  const [isLoading, setIsLoading] = useState(false);
 
   const getToken = () => localStorage.getItem('tkn');
 
@@ -27,8 +28,6 @@ const ChatBox = () => {
               timestamp: msg.timestamp,
             }));
             setMessages(history);
-          } else {
-            console.error('Error fetching chat history:', res.data);
           }
         })
         .catch((err) => console.error('Error fetching chat history:', err));
@@ -46,6 +45,7 @@ const ChatBox = () => {
 
     setMessages((prev) => [...prev, userMessage]);
     setMessage('');
+    setIsLoading(true);
 
     const token = getToken();
 
@@ -53,7 +53,7 @@ const ChatBox = () => {
       .post(
         'https://campus-finder.runasp.net/api/Chatbot/ask',
         {
-          sessionId: sessionId || "",
+          sessionId: sessionId || '',
           message: message,
         },
         {
@@ -72,14 +72,14 @@ const ChatBox = () => {
           };
           setMessages((prev) => [...prev, botMessage]);
 
-          // حفظ sessionId لو لسه ماكانش محفوظ
           if (res.data.data.sessionId && !sessionId) {
             setSessionId(res.data.data.sessionId);
             localStorage.setItem('chat_session_id', res.data.data.sessionId);
           }
         }
       })
-      .catch((err) => console.error('Error sending message:', err));
+      .catch((err) => console.error('Error sending message:', err))
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -93,6 +93,14 @@ const ChatBox = () => {
               {msg.text}
             </div>
           ))}
+
+          {isLoading && (
+            <div className="chat-msg bot">
+              <span className="loader-dot"></span>
+              <span className="loader-dot"></span>
+              <span className="loader-dot"></span>
+            </div>
+          )}
         </div>
 
         <div className="chatbox-input-wrapper">
