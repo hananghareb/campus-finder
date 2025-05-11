@@ -5,17 +5,19 @@ import './Chat.css';
 const ChatBox = () => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [sessionId, setSessionId] = useState(localStorage.getItem('chat_session_id') || '');
   const [isLoading, setIsLoading] = useState(false);
 
   const getToken = () => localStorage.getItem('tkn');
 
   useEffect(() => {
+    const currentSessionId = localStorage.getItem('chat_session_id');
     const token = getToken();
 
-    if (sessionId && token) {
+    console.log('Fetching history for session:', currentSessionId);
+
+    if (currentSessionId && token) {
       axios
-        .get(`https://campus-finder.runasp.net/api/Chatbot/history/${sessionId}`, {
+        .get(`https://campus-finder.runasp.net/api/Chatbot/history/${currentSessionId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -32,7 +34,7 @@ const ChatBox = () => {
         })
         .catch((err) => console.error('Error fetching chat history:', err));
     }
-  }, [sessionId]);
+  }, []);
 
   const handleSend = () => {
     if (message.trim() === '') return;
@@ -48,12 +50,13 @@ const ChatBox = () => {
     setIsLoading(true);
 
     const token = getToken();
+    const sessionId = localStorage.getItem('chat_session_id') || '';
 
     axios
       .post(
         'https://campus-finder.runasp.net/api/Chatbot/ask',
         {
-          sessionId: sessionId || '',
+          sessionId: sessionId,
           message: message,
         },
         {
@@ -72,9 +75,10 @@ const ChatBox = () => {
           };
           setMessages((prev) => [...prev, botMessage]);
 
-          if (res.data.data.sessionId && !sessionId) {
-            setSessionId(res.data.data.sessionId);
+          // Always update sessionId
+          if (res.data.data.sessionId) {
             localStorage.setItem('chat_session_id', res.data.data.sessionId);
+            console.log('Updated sessionId:', res.data.data.sessionId);
           }
         }
       })
