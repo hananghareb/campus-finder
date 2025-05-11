@@ -68,7 +68,7 @@ export default function UpdateUni() {
   if (error) return <div className="text-center p-5 text-danger">Error loading university data.</div>;
 
   return (
-    <div className="p-4 min-vh-100 bg-light d-flex justify-content-center align-items-start">
+    <div className="p-4 min-vh-100 d-flex justify-content-center align-items-start">
       <div className="p-4" style={{ width: '100%', maxWidth: 500 }}>
         <h5 className="text-center mb-4 ms-5">Update University</h5>
 
