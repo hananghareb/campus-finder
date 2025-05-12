@@ -21,19 +21,26 @@ const Dashboard = () => {
       });
   }, []);
 
-  
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this university?');
-    if (!confirmDelete) return;
+const handleDelete = async (id) => {
+  const confirmDelete = window.confirm('Are you sure you want to delete this university?');
+  if (!confirmDelete) return;
 
-    try {
-      await axios.delete(`https://campus-finder.runasp.net/api/University/${id}`);
-      setUniversities((prev) => prev.filter((uni) => uni.universityID !== id));
-    } catch (error) {
-      console.error("Delete failed:", error);
-      alert("Failed to delete university.");
-    }
-  };
+  const token = localStorage.getItem('tkn');
+
+  try {
+    await axios.delete(`https://campus-finder.runasp.net/api/University/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    setUniversities((prev) => prev.filter((uni) => uni.universityID !== id));
+  } catch (error) {
+    console.error("Delete failed:", error);
+    alert("Failed to delete university.");
+  }
+};
+
 
   if (loading) return <div className="text-center p-5">Loading...</div>;
   if (error) return <div className="text-center p-5 text-danger">Error fetching data</div>;
