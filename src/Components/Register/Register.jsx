@@ -48,7 +48,7 @@ const [isloading, setisloading] = useState(false)
 
         setTimeout(function(){
           navigate('/login')
-        },3000)
+        },2000)
 
       }
     }
