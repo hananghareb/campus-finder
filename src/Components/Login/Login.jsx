@@ -38,9 +38,14 @@ export default function Login() {
   setdisplayName(data.displayName); // أضف دي
 
   setsuccessmsg('Login Successfully');
-  setTimeout(() => {
-    navigate('/');
+setTimeout(() => {
+    if (data.displayName.toLowerCase() === 'hanona') {
+      navigate('/dashboard');
+    } else {
+      navigate('/');
+    }
   });
+
 }
 
     }
