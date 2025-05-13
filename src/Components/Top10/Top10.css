@@ -66,6 +66,7 @@
 }
 
 .uni-rank {
+  margin: auto !important;
   background-color: #3498db;
   color: white;
   padding: 0.3rem 0.8rem;
